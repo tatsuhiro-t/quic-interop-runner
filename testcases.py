@@ -1510,6 +1510,47 @@ class TestCaseV2(TestCase):
         if not self._check_files():
             return TestResult.FAILED
 
+        client_other_versions = []
+        for p in self._client_trace().get_initial(Direction.FROM_CLIENT):
+            if hasattr(p, "tls.quic.parameter.vn.chosen_version"):
+                chosen_version = hex(
+                    int(getattr(p, "tls.quic.parameter.vn.chosen_version"), 0)
+                )
+                if chosen_version != QUIC_VERSION:
+                    logging.info(
+                        "Wrong version in client chosen_version. Expected %s, got %s",
+                        QUIC_VERSION, chosen_version)
+                    return TestResult.FAILED
+
+            if hasattr(p, "tls.quic.parameter.vn.other_version"):
+                other_versions = getattr(
+                    p, "tls.quic.parameter.vn.other_version"
+                )
+                for f in other_versions.fields:
+                    v = hex(f.hex_value)
+                    if QUIC_V2_DRAFT == v:
+                        quic_v2_draft_found = True
+                        break
+                    client_other_versions.append(v)
+
+        if not quic_v2_draft_found:
+            logging.info(
+                "Expect client other_versions to include %s. Got %s",
+                QUIC_V2_DRAFT, client_other_versions
+            )
+            return TestResult.FAILED
+
+        for p in self._server_trace().get_initial(Direction.FROM_SERVER):
+            if hasattr(p, "tls.quic.parameter.vn.chosen_version"):
+                chosen_version = hex(
+                    int(getattr(p, "tls.quic.parameter.vn.chosen_version"), 0)
+                )
+                if chosen_version != QUIC_V2_DRAFT:
+                    logging.info(
+                        "Wrong version in server chosen_version. Expected %s, got %s",
+                        QUIC_V2_DRAFT, chosen_version)
+                    return TestResult.FAILED
+
         return TestResult.SUCCEEDED
 
     def _get_packet_versions(self, packets: List) -> set:
