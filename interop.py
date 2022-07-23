@@ -135,12 +135,12 @@ class InteropRunner:
             "SERVER="
             + self._implementations[name]["image"]
             + " "  # only needed so docker compose doesn't complain
-            "docker compose --env-file empty.env up --timeout 0 --abort-on-container-exit -V sim client"
+            "docker compose --env-file empty.env up --timeout 0 --exit-code-from client -V sim client"
         )
         output = subprocess.run(
             cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
         )
-        if not self._is_unsupported(output.stdout.splitlines()):
+        if output.returncode != 127:
             logging.error("%s client not compliant.", name)
             logging.debug("%s", output.stdout.decode("utf-8", errors="replace"))
             self.compliant[name] = False
@@ -161,12 +161,12 @@ class InteropRunner:
             + self._implementations[name]["image"]
             + " "  # only needed so docker compose doesn't complain
             "SERVER=" + self._implementations[name]["image"] + " "
-            "docker compose --env-file empty.env up -V server"
+            "docker compose --env-file empty.env up --exit-code-from server -V server"
         )
         output = subprocess.run(
             cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
         )
-        if not self._is_unsupported(output.stdout.splitlines()):
+        if output.returncode != 127:
             logging.error("%s server not compliant.", name)
             logging.debug("%s", output.stdout.decode("utf-8", errors="replace"))
             self.compliant[name] = False
