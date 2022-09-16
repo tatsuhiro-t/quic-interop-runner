@@ -417,8 +417,10 @@ class InteropRunner:
             log_dir = self._log_dir + "/" + server + "_" + client + "/" + str(testcase)
             if log_dir_prefix:
                 log_dir += "/" + log_dir_prefix
-            shutil.copyfile(client_log_dir.name + "/log.txt", "/dev/stdout")
-            shutil.copyfile(server_log_dir.name + "/log.txt", "/dev/stdout")
+            with open(client_log_dir.name + "/log.txt", "r") as f:
+                print(f.read())
+            with open(server_log_dir.name + "/log.txt", "r") as f:
+                print(f.read())
             shutil.copytree(server_log_dir.name, log_dir + "/server")
             shutil.copytree(client_log_dir.name, log_dir + "/client")
             shutil.copytree(sim_log_dir.name, log_dir + "/sim")
