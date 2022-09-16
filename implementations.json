@@ -2,6 +2,11 @@
   "ngtcp2": {
     "image": "ghcr.io/ngtcp2/ngtcp2-interop:latest",
     "url": "https://github.com/ngtcp2/ngtcp2",
-    "role": "both"
+    "role": "server"
+  },
+  "picoquic": {
+    "image": "privateoctopus/picoquic:latest",
+    "url": "https://github.com/private-octopus/picoquic",
+    "role": "client"
   }
 }
