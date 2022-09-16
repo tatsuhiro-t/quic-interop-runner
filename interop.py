@@ -417,8 +417,11 @@ class InteropRunner:
             log_dir = self._log_dir + "/" + server + "_" + client + "/" + str(testcase)
             if log_dir_prefix:
                 log_dir += "/" + log_dir_prefix
-            with open(client_log_dir.name + "/log.txt", "r") as f:
-                print(f.read())
+            try:
+                with open(client_log_dir.name + "/log.txt", "r") as f:
+                    print(f.read())
+            except FileNotFoundError as e:
+                logging.error(f'client log not found: {e}')
             with open(server_log_dir.name + "/log.txt", "r") as f:
                 print(f.read())
             shutil.copytree(server_log_dir.name, log_dir + "/server")
