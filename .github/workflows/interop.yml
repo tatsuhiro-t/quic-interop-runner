@@ -196,13 +196,13 @@ jobs:
         run: |
           pip install -U pip
           pip install -r requirements.txt
-      - name: Run tests
-        env:
-          CRON: "true"
-        run: |
-          (python run.py --client ${{ matrix.client }} --server ${{ matrix.server }} --log-dir logs --json ${{ matrix.server }}_${{ matrix.client }}_results.json -t onlyTests || true) | tee output.txt
-          mkdir -p logs/${{ matrix.server }}_${{ matrix.client }}
-          mv output.txt logs/${{ matrix.server }}_${{ matrix.client }}/
+      # - name: Run tests
+      #   env:
+      #     CRON: "true"
+      #   run: |
+      #     (python run.py --client ${{ matrix.client }} --server ${{ matrix.server }} --log-dir logs --json ${{ matrix.server }}_${{ matrix.client }}_results.json -t onlyTests || true) | tee output.txt
+      #     mkdir -p logs/${{ matrix.server }}_${{ matrix.client }}
+      #     mv output.txt logs/${{ matrix.server }}_${{ matrix.client }}/
       - name: Run measurements
         env:
           CRON: "true"

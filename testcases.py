@@ -1739,9 +1739,9 @@ TESTCASES = [
 ]
 
 MEASUREMENTS = [
-    MeasurementGoodput,
-    MeasurementCrossTraffic,
-    MeasurementTerrestrial,
+#    MeasurementGoodput,
+#    MeasurementCrossTraffic,
+#    MeasurementTerrestrial,
     MeasurementSatellite,
-    MeasurementSatelliteLoss,
+#    MeasurementSatelliteLoss,
 ]
