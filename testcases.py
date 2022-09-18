@@ -1742,6 +1742,6 @@ MEASUREMENTS = [
 #    MeasurementGoodput,
 #    MeasurementCrossTraffic,
 #    MeasurementTerrestrial,
-    MeasurementSatellite,
-#    MeasurementSatelliteLoss,
+#    MeasurementSatellite,
+    MeasurementSatelliteLoss,
 ]
