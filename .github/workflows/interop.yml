@@ -27,7 +27,7 @@ jobs:
           echo $STARTTIME
           echo "starttime=$STARTTIME" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v4
-      - uses: actions/setup-docker-action@v4
+      - uses: docker/setup-docker-action@v4
         with:
           version: version=v28
       - uses: actions/setup-python@v5
