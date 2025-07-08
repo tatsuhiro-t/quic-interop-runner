@@ -142,7 +142,7 @@ class InteropRunner:
         )
         if not self._is_unsupported(output.stdout.splitlines()):
             logging.error("%s client not compliant.", name)
-            logging.debug("%s", output.stdout.decode("utf-8", errors="replace"))
+            logging.error("%s", output.stdout.decode("utf-8", errors="replace"))
             self.compliant[name] = False
             return False
         logging.debug("%s client compliant.", name)
