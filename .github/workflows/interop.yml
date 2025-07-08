@@ -27,9 +27,6 @@ jobs:
           echo $STARTTIME
           echo "starttime=$STARTTIME" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v4
-      - uses: docker/setup-docker-action@v4
-        with:
-          version: version=v28.3.0
       - uses: actions/setup-python@v5
         with:
           python-version: 3.8
@@ -115,6 +112,9 @@ jobs:
     name: (${{ matrix.server }} - ${{ matrix.client }})
     steps:
       - uses: actions/checkout@v4
+      - uses: docker/setup-docker-action@v4
+        with:
+          version: version=v28.3.0
       - uses: actions/setup-python@v5
         with:
           python-version: 3.8
