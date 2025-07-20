@@ -265,9 +265,18 @@ class TestCase(abc.ABC):
     def _count_handshakes(self) -> int:
         """Count the number of QUIC handshakes"""
         tr = self._server_trace()
-        # Determine the number of handshakes by looking at Initial packets.
-        # This is easier, since the SCID of Initial packets doesn't changes.
-        return len(set([p.scid for p in tr.get_initial(Direction.FROM_SERVER)]))
+        handshakes = set()
+
+        for p in tr.get_1rtt(Direction.FROM_SERVER):
+            if not hasattr(p, "frame_type") or not hasattr(p, "connection.number"):
+                continue
+
+            for f in getattr(p, "frame_type").all_fields:
+                if f.hex_value == 0x1E:
+                    handshakes.add(getattr(p, "connection.number"))
+                    break
+
+        return len(handshakes)
 
     def _get_versions(self) -> set:
         """Get the QUIC versions"""
