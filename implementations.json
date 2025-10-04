@@ -5,7 +5,7 @@
     "role": "both"
   },
   "ngtcp2": {
-    "image": "ghcr.io/ngtcp2/ngtcp2-interop:latest",
+    "image": "ghcr.io/ngtcp2/ngtcp2-interop:debug",
     "url": "https://github.com/ngtcp2/ngtcp2",
     "role": "both"
   },
