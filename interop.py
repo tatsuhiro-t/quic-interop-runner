@@ -525,7 +525,7 @@ class InteropRunner:
         res = MeasurementResult()
         res.result = TestResult.SUCCEEDED
         res.details = "{:.0f} (± {:.0f}) {}".format(
-            0, 0, test.unit()
+            statistics.mean(values), 0, test.unit()
         )
         return res
 
