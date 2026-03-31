@@ -2,21 +2,11 @@
   "webtransport-go": {
     "image": "martenseemann/webtransport-go-interop:latest",
     "url": "https://github.com/quic-go/webtransport-go",
-    "role": "both"
-  },
-  "chrome": {
-    "image": "martenseemann/chrome-webtransport-interop-runner",
-    "url": "https://github.com/quic-interop/browser-webtransport-interop-runner",
     "role": "client"
   },
-  "firefox": {
-    "image": "martenseemann/firefox-webtransport-interop-runner",
-    "url": "https://github.com/quic-interop/browser-webtransport-interop-runner",
-    "role": "client"
-  },
-  "flupke-webtransport": {
-    "image": "peterdoornbosch/flupke-webtransport-interop",
-    "url": "https://github.com/ptrd/flupke",
+  "ngtcp2": {
+    "image": "ghcr.io/ngtcp2/ngtcp2-interop-webtransport:latest",
+    "url": "https://github.com/ngtcp2/ngtcp2",
     "role": "server"
   }
 }
