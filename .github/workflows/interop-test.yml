@@ -99,16 +99,6 @@ jobs:
           find logs_measurement -depth -name "client" -type d -exec rm -r "{}" \;
           find logs_measurement -depth -name "server" -type d -exec rm -r "{}" \;
           mv logs_measurement/${{ inputs.server }}_${{ matrix.client }}/* logs/${{ inputs.server }}_${{ matrix.client }}/
-      - name: Upload logs to interop.seemann.io
-        uses: burnett01/rsync-deployments@dc0d5d44c4728aad3f02154a87309809e62a960f # v8.0.4
-        if: ${{ always() && inputs.upload_results }}
-        with:
-          switches: -avzr --relative
-          path: logs/./${{ inputs.server }}_${{ matrix.client }}/
-          remote_path: ${{ inputs.upload_dir }}/${{ inputs.logname }}
-          remote_host: interop.seemann.io
-          remote_user: ${{ secrets.INTEROP_SEEMANN_IO_USER }}
-          remote_key: ${{ secrets.INTEROP_SEEMANN_IO_SSH_KEY }}
       - name: Upload result
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
