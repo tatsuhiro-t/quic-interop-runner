@@ -509,7 +509,11 @@ class InteropRunner:
             shutil.copytree(sim_log_dir.name, log_dir + "/sim")
             shutil.copyfile(log_file.name, log_dir + "/output.txt")
 
-            with open(log_dir + "/server/log.txt", "r") as f:
+            # with open(log_dir + "/server/log.txt", "r") as f:
+            #     content = f.read()
+            #     print(content)
+
+            with open(log_dir + "/output.txt", "r") as f:
                 content = f.read()
                 print(content)
 
