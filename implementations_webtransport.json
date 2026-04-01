@@ -1,7 +1,12 @@
 {
-  "webtransport-go": {
-    "image": "martenseemann/webtransport-go-interop:latest",
-    "url": "https://github.com/quic-go/webtransport-go",
+  // "webtransport-go": {
+  //   "image": "martenseemann/webtransport-go-interop:latest",
+  //   "url": "https://github.com/quic-go/webtransport-go",
+  //   "role": "client"
+  // },
+  "chrome": {
+    "image": "martenseemann/chrome-webtransport-interop-runner",
+    "url": "https://github.com/quic-interop/browser-webtransport-interop-runner",
     "role": "client"
   },
   "ngtcp2": {
