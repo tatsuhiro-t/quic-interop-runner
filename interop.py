@@ -513,7 +513,7 @@ class InteropRunner:
                 content = f.read()
                 print(content)
 
-            with open(log_dir + "/client/log.txt", "r") as f:
+            with open(log_dir + "/server/log.txt", "r") as f:
                 content = f.read()
                 print(content)
 
