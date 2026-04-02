@@ -414,7 +414,7 @@ class InteropRunner:
         )
 
         reqs = test.get_paths()
-        logging.debug("Requests: %s", reqs)
+        logging.info("Requests: %s", reqs)
         params = (
             "WAITFORSERVER=server:443 "
             "CERTS=" + test.certs_dir() + " "
@@ -439,7 +439,7 @@ class InteropRunner:
             + " docker compose --env-file empty.env up --abort-on-container-exit --timeout 10 "
             + containers
         )
-        logging.debug("Command: %s", cmd)
+        logging.info("Command: %s", cmd)
 
         status = TestResult.FAILED
         output = ""
@@ -457,7 +457,7 @@ class InteropRunner:
             output = ex.stdout
             expired = True
 
-        logging.debug("%s", output.decode("utf-8", errors="replace"))
+        logging.info("%s", output.decode("utf-8", errors="replace"))
 
         if expired:
             logging.debug("Test failed: took longer than %ds.", test.timeout())
