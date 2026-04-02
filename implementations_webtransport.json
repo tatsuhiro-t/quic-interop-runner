@@ -1,7 +1,7 @@
 {
-  "webtransport-go": {
-    "image": "martenseemann/webtransport-go-interop:latest",
-    "url": "https://github.com/quic-go/webtransport-go",
+  "flupke-webtransport": {
+    "image": "peterdoornbosch/flupke-webtransport-interop",
+    "url": "https://github.com/ptrd/flupke",
     "role": "server"
   },
   "ngtcp2": {
