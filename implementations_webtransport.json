@@ -15,7 +15,7 @@
     "role": "client"
   },
   "ngtcp2": {
-    "image": "ghcr.io/ngtcp2/ngtcp2-interop-webtransport:latest",
+    "image": "ghcr.io/ngtcp2/ngtcp2-interop-webtransport:debug",
     "url": "https://github.com/ngtcp2/ngtcp2/tree/webtransport",
     "role": "server"
   }
